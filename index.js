@@ -6,7 +6,14 @@ const cors = require("cors")
 
 const app = express()
 
-app.use(cors())
+// app.use(cors())
+app.use(cors({
+    origin: "http://localhost:5173",  // Allow requests from your React frontend
+    credentials: true,  // Allow cookies & authorization headers
+    methods: ["GET", "POST", "PUT", "DELETE"],  // Allowed request types
+    allowedHeaders: ["Content-Type", "Authorization"]  // Explicitly allow headers
+}));
+
 app.use(express.json())
 
 
