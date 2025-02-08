@@ -12,7 +12,7 @@ app.use(cors({
     credentials: true,  // Allow cookies & authorization headers
     methods: ["GET", "POST", "PUT", "DELETE"],  // Allowed request types
     allowedHeaders: ["Content-Type", "Authorization"],  // Explicitly allow headers
-    exposedHeaders: ["Access-Control-Allow-Origin"]  // Expose headers to the client
+    exposedHeaders: ["Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"]  // Expose headers to the client
 }));
 
 
