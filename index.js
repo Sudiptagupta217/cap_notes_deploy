@@ -9,7 +9,7 @@ const app = express()
 app.use(cors({
     origin: 'http://localhost:5173', // Allow specific origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
-    // allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
+   // allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
     credentials: true // Allow credentials
 }))
 
