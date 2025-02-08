@@ -14,7 +14,13 @@ const app = express()
 // }))
 // app.options("*", cors());
 
-app.use(cors({ origin: "*", credentials: true }));
+app.use(cors({
+    origin: "*",   // Allow any origin (debugging mode)
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
 
 
 app.use(express.json())
