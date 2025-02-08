@@ -6,26 +6,12 @@ const { userRouter } = require("./routes/user.routes");
 
 const app = express();
 
-// ✅ Fix: Proper CORS setup
 app.use(cors({
-    origin: "*",  // Allow all origins (for debugging)
+    origin: "*",  
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
-
-// ✅ Fix: Ensure preflight requests get proper headers
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    
-    if (req.method === "OPTIONS") {
-        return res.sendStatus(204);
-    }
-    
-    next();
-});
 
 app.use(express.json());
 
