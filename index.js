@@ -6,21 +6,25 @@ const { userRouter } = require("./routes/user.routes");
 
 const app = express();
 
-// ✅ Correct CORS Configuration
+// ✅ Fix: Proper CORS setup
 app.use(cors({
-    origin: "http://localhost:5173",  // Allow frontend requests
-    credentials: true,  // Allow cookies/auth headers
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],  // Allow preflight
+    origin: "*",  // Allow all origins (for debugging)
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
-// ✅ Handle Preflight Requests
-app.options("*", (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.setHeader("Access-Control-Allow-Credentials", "true");
-    return res.status(204).end();
+// ✅ Fix: Ensure preflight requests get proper headers
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    
+    if (req.method === "OPTIONS") {
+        return res.sendStatus(204);
+    }
+    
+    next();
 });
 
 app.use(express.json());
