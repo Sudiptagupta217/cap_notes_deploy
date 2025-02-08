@@ -8,7 +8,7 @@ const app = express()
 
 app.use(express.json())
 app.use(cors({
-    origin: 'http://localhost:5173', // Allow specific origin
+    origin: ['http://localhost:5173', 'https://cap-notes-deploy.onrender.com'], // Allow specific origins
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
     allowedHeaders: ['Content-Type', 'Authorization'] // Allow specific headers
 }))
