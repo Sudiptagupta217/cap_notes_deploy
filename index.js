@@ -8,12 +8,10 @@ const app = express()
 
 app.use(express.json())
 app.use(cors({
-    origin: ["http://localhost:5173", "https://cap-notes-deploy.onrender.com"],  // Allow requests from your React frontend and deployed backend
-    credentials: true,  // Allow cookies & authorization headers
-    methods: ["GET", "POST", "PUT", "DELETE"],  // Allowed request types
-    allowedHeaders: ["Content-Type", "Authorization"],  // Explicitly allow headers
-    exposedHeaders: ["Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"]  // Expose headers to the client
-}));
+    origin: '*', // Allow all origins
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'] // Allow specific headers
+}))
 
 
 app.use("/users", userRouter)
